@@ -171,6 +171,38 @@ void PrintTheQuestion(stQuizz& Quizz, short QuestionNumber)
     cout << GetOpTypeSymbol(Quizz.QuestionList[QuestionNumber].OperationType);
     cout << "\n_________" << endl;
 }
+void SetScreenColor(bool Right)
+{
+    if (Right)
+        system("color 2F");
+    else
+    {
+        system("color 4F");
+        cout << "\a";
+    }
+}
+
+void CorrectTheQuestionAnswer(stQuizz& Quizz, short QuestionNumber)
+{
+    if (Quizz.QuestionList[QuestionNumber].PlayerAnswer !=
+        Quizz.QuestionList[QuestionNumber].CorrectAnswer)
+    {
+        Quizz.QuestionList[QuestionNumber].AnswerResult = false;
+        Quizz.NumberOfWrongAnswers++;
+        cout << "Wrong Answer :-( \n";
+        cout << "The right answer is: ";
+        cout << Quizz.QuestionList[QuestionNumber].CorrectAnswer;
+        cout << "\n";
+    }
+    else
+    {
+        Quizz.QuestionList[QuestionNumber].AnswerResult = true;
+        Quizz.NumberOfRightAnswers++;
+        cout << "Right Answer :-) \n";
+    }
+    cout << endl;
+    SetScreenColor(Quizz.QuestionList[QuestionNumber].AnswerResult);
+}
 int main()
 {
     srand((unsigned)time(NULL));
