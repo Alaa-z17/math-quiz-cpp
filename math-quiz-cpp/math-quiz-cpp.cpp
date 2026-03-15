@@ -214,6 +214,32 @@ void AskAndCorrectQuestionListAnswers(stQuizz& Quizz)
     Quizz.isPass = (Quizz.NumberOfRightAnswers >=
         Quizz.NumberOfWrongAnswers);
 }
+string GetFinalResultsText(bool Pass)
+{
+    if (Pass)
+        return "PASS :-)";
+    else
+        return "Fail :-(";
+}
+
+void PrintQuizzResults(stQuizz Quizz)
+{
+    cout << "\n";
+    cout << "______________________________\n\n";
+    cout << " Final Results is " <<
+        GetFinalResultsText(Quizz.isPass);
+    cout << "\n______________________________\n\n";
+    cout << "Number of Questions : " << Quizz.NumberOfQuestions << endl;
+    cout << "Questions Level     : "<<
+        GetQuestionLevelText(Quizz.QuestionsLevel) << endl;
+    cout << "OpType              : "<<
+        GetOpTypeSymbol(Quizz.OpType) << endl;
+    cout << "Number of Right Answers: "<<
+        Quizz.NumberOfRightAnswers << endl;
+    cout << "Number of Wrong Answers: "<<
+        Quizz.NumberOfWrongAnswers << endl;
+    cout << "______________________________\n";
+}
 int main()
 {
     srand((unsigned)time(NULL));
