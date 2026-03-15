@@ -51,6 +51,40 @@ string GetQuestionLevelText(enQuestionsLevel QuestionLevel)
     return arrQuestionLevelText[QuestionLevel - 1];
 }
 
+short ReadHowManyQuestions()
+{
+    short NumberOfQuestions = 0;
+    do
+    {
+        cout << "How Many Questions do you want to answer ? ";
+        cin >> NumberOfQuestions;
+    } while (NumberOfQuestions < 1 || NumberOfQuestions > 10);
+    return NumberOfQuestions;
+}
+
+enQuestionsLevel ReadQuestionsLevel()
+{
+    short QuestionLevel = 0;
+    do
+    {
+        cout << "Enter Questions Level [1] Easy, [2] Med, [3] Hard, [4] Mix ? ";
+        cin >> QuestionLevel;
+    } while (QuestionLevel < 1 || QuestionLevel > 4);
+    return (enQuestionsLevel)QuestionLevel;
+}
+
+enOperationType ReadOpType()
+{
+    short OpType = 0;
+    do
+    {
+        cout << "Enter Operation Type [1] Add, [2] Sub, [3] Mul, [4] Div, [5] Mix ? ";
+        cin >> OpType;
+    } while (OpType < 1 || OpType > 5);
+    return (enOperationType)OpType;
+}
+
+
 struct stQuestion
 {
     int Number1 = 0;
