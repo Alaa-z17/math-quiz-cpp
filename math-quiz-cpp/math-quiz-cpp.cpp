@@ -99,9 +99,9 @@ struct stQuestion
 struct stQuizz
 {
     stQuestion QuestionList[100];
-    short NumberOfQuestions;
-    enQuestionsLevel QuestionsLevel;
-    enOperationType OpType;
+    short NumberOfQuestions = 0; // initialize to avoid C26495
+    enQuestionsLevel QuestionsLevel = enQuestionsLevel::EasyLevel; // default value
+    enOperationType OpType = enOperationType::Add; // default value
     short NumberOfWrongAnswers = 0;
     short NumberOfRightAnswers = 0;
     bool isPass = false;
@@ -240,8 +240,38 @@ void PrintQuizzResults(stQuizz Quizz)
         Quizz.NumberOfWrongAnswers << endl;
     cout << "______________________________\n";
 }
+void ResetScreen()
+{
+    system("cls");
+    system("color 0F");
+}
+
+void PlayMathGame()
+{
+    stQuizz Quizz;
+    Quizz.NumberOfQuestions = ReadHowManyQuestions();
+    Quizz.QuestionsLevel = ReadQuestionsLevel();
+    Quizz.OpType = ReadOpType();
+    GenerateQuizzQuestions(Quizz);
+    AskAndCorrectQuestionListAnswers(Quizz);
+    PrintQuizzResults(Quizz);
+}
+
+void StartGame()
+{
+    char PlayAgain = 'Y';
+    do
+    {
+        ResetScreen();
+        PlayMathGame();
+        cout << endl << "Do you want to play again? Y/N? ";
+        cin >> PlayAgain;
+    } while (PlayAgain == 'Y' || PlayAgain == 'y');
+}
+
 int main()
 {
     srand((unsigned)time(NULL));
+    StartGame();
     return 0;
 }
