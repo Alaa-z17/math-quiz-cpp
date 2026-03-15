@@ -89,8 +89,8 @@ struct stQuestion
 {
     int Number1 = 0;
     int Number2 = 0;
-    enOperationType OperationType;
-    enQuestionsLevel QuestionLevel;
+    enOperationType OperationType = enOperationType::Add;
+    enQuestionsLevel QuestionLevel = enQuestionsLevel::EasyLevel;
     int CorrectAnswer = 0;
     int PlayerAnswer = 0;
     bool AnswerResult = false;
@@ -147,7 +147,14 @@ stQuestion GenerateQuestion(enQuestionsLevel QuestionLevel, enOperationType OpTy
     }
     return Question;
 }
-
+void GenerateQuizzQuestions(stQuizz& Quizz)
+{
+    for (short Question = 0; Question < Quizz.NumberOfQuestions; Question++)
+    {
+        Quizz.QuestionList[Question] =
+            GenerateQuestion(Quizz.QuestionsLevel, Quizz.OpType);
+    }
+}
 int main()
 {
     srand((unsigned)time(NULL));
