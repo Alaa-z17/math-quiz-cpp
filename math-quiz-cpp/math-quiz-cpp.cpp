@@ -106,6 +106,47 @@ struct stQuizz
     short NumberOfRightAnswers = 0;
     bool isPass = false;
 };
+enOperationType GetRandomOperationType()
+{
+    int Op = RandomNumber(1, 4);
+    return (enOperationType)Op;
+}
+
+stQuestion GenerateQuestion(enQuestionsLevel QuestionLevel, enOperationType OpType)
+{
+    stQuestion Question;
+    if (QuestionLevel == enQuestionsLevel::Mix)
+    {
+        QuestionLevel = (enQuestionsLevel)RandomNumber(1, 3);
+    }
+    if (OpType == enOperationType::MixOp)
+    {
+        OpType = GetRandomOperationType();
+    }
+    Question.OperationType = OpType;
+    switch (QuestionLevel)
+    {
+    case enQuestionsLevel::EasyLevel:
+        Question.Number1 = RandomNumber(1, 10);
+        Question.Number2 = RandomNumber(1, 10);
+        Question.CorrectAnswer = SimpleCalculator(Question.Number1, Question.Number2, Question.OperationType);
+        Question.QuestionLevel = QuestionLevel;
+        return Question;
+    case enQuestionsLevel::MedLevel:
+        Question.Number1 = RandomNumber(10, 50);
+        Question.Number2 = RandomNumber(10, 50);
+        Question.CorrectAnswer = SimpleCalculator(Question.Number1, Question.Number2, Question.OperationType);
+        Question.QuestionLevel = QuestionLevel;
+        return Question;
+    case enQuestionsLevel::HardLevel:
+        Question.Number1 = RandomNumber(50, 100);
+        Question.Number2 = RandomNumber(50, 100);
+        Question.CorrectAnswer = SimpleCalculator(Question.Number1, Question.Number2, Question.OperationType);
+        Question.QuestionLevel = QuestionLevel;
+        return Question;
+    }
+    return Question;
+}
 
 int main()
 {
