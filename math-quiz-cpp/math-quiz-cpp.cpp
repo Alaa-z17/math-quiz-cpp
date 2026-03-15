@@ -155,6 +155,22 @@ void GenerateQuizzQuestions(stQuizz& Quizz)
             GenerateQuestion(Quizz.QuestionsLevel, Quizz.OpType);
     }
 }
+int ReadQuestionAnswer()
+{
+    int Answer = 0;
+    cin >> Answer;
+    return Answer;
+}
+
+void PrintTheQuestion(stQuizz& Quizz, short QuestionNumber)
+{
+    cout << "\n";
+    cout << "Question [" << QuestionNumber + 1 << "/" << Quizz.NumberOfQuestions << "] \n\n";
+    cout << Quizz.QuestionList[QuestionNumber].Number1 << endl;
+    cout << Quizz.QuestionList[QuestionNumber].Number2 << " ";
+    cout << GetOpTypeSymbol(Quizz.QuestionList[QuestionNumber].OperationType);
+    cout << "\n_________" << endl;
+}
 int main()
 {
     srand((unsigned)time(NULL));
