@@ -28,6 +28,29 @@ int SimpleCalculator(int Number1, int Number2, enOperationType OpType)
     }
 }
 
+string GetOpTypeSymbol(enOperationType OpType)
+{
+    switch (OpType)
+    {
+    case enOperationType::Add:
+        return "+";
+    case enOperationType::Sub:
+        return "-";
+    case enOperationType::Mult:
+        return "x";
+    case enOperationType::Div:
+        return "/";
+    default:
+        return "Mix";
+    }
+}
+
+string GetQuestionLevelText(enQuestionsLevel QuestionLevel)
+{
+    string arrQuestionLevelText[4] = { "Easy","Med","Hard","Mix" };
+    return arrQuestionLevelText[QuestionLevel - 1];
+}
+
 struct stQuestion
 {
     int Number1 = 0;
