@@ -4,6 +4,11 @@ A console-based Math Quiz game built in **C++** demonstrating
 core concepts of **Functional & Procedural Programming**.
 
 ---
+## 🎬 Video Walkthrough
+
+[![Math Quiz in C++](https://img.youtube.com/vi/iX70bP90ooA/0.jpg)](https://youtu.be/iX70bP90ooA)
+
+> Click the image above to watch the full project walkthrough on YouTube.
 
 ## 🎯 Learning Objectives
 
